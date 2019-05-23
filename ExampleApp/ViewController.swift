@@ -117,10 +117,42 @@ extension ViewController: SimpleCameraVideoOutputObservable {
                 let imageScale = min(1.0, scale)
                 image = rawImage.transformed(by: CGAffineTransform(scaleX: imageScale, y: imageScale))
             }
-            self.imageView.image = image
+//            self.imageView.image = image
+            let maskColor = CIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.8)
+            guard let maskImage = CIFilter(name: "CIConstantColorGenerator", parameters: ["inputColor": maskColor])?.outputImage?.cropped(to: image.extent) else {
+                return
+            }
+
+            let rect = image.extent.insetBy(dx: 400.0, dy: 100.0)
+            let sourceOutMaskColor = CIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+            guard let sourceOutMaskImage = CIFilter(name: "CIConstantColorGenerator", parameters: ["inputColor": sourceOutMaskColor])?.outputImage?.cropped(to: rect) else {
+                return
+            }
+            guard let sourceOutedImage = CIFilter(name: "CISourceOutCompositing", parameters: [
+                kCIInputImageKey: maskImage,
+                "inputBackgroundImage": sourceOutMaskImage
+            ])?.outputImage else {
+                return
+            }
+
+            guard let sourceOveredImage = CIFilter(name: "CISourceOverCompositing", parameters: [
+                kCIInputImageKey: sourceOutedImage,
+                "inputBackgroundImage": image
+            ])?.outputImage else {
+                return
+            }
+
+            self.imageView.image = sourceOveredImage
+            /*
+             if let mask = ConstantColorGenerator.image(inputColor: CIColor(red: 0.9, green: 0.2, blue: 0.1, alpha: 0.5)) {
+             if let m = SourceOverCompositing.filter(inputBackgroundImage: maskedImage)(mask.cropped(to: feature.bounds)) {
+             maskedImage = m.cropped(to: scaledCIImage.extent)
+             }
+             }
+             */
 
             let detectorScale: CGFloat = 0.3
-            let detectorImage = image.transformed(by: CGAffineTransform(scaleX: detectorScale, y: detectorScale))
+            let detectorImage = image.cropped(to: rect).transformed(by: CGAffineTransform(scaleX: detectorScale, y: detectorScale))
             let features = self.detector?.features(in: detectorImage) ?? []
             self.featuresCountLabel.text = "\(features.count)"
 
@@ -145,14 +177,6 @@ extension ViewController: SimpleCameraVideoOutputObservable {
             let p = CGPoint(x: feature.bounds.midX / detectorImage.extent.width, y: 1.0 - feature.bounds.midY / detectorImage.extent.height)
             // print(p)
             self.locusView.move(to: p)
-
-            /*
-            if let mask = ConstantColorGenerator.image(inputColor: CIColor(red: 0.9, green: 0.2, blue: 0.1, alpha: 0.5)) {
-                if let m = SourceOverCompositing.filter(inputBackgroundImage: maskedImage)(mask.cropped(to: feature.bounds)) {
-                    maskedImage = m.cropped(to: scaledCIImage.extent)
-                }
-            }
-             */
         }
     }
 
