@@ -20,6 +20,11 @@ final class ViewController: UIViewController {
     @IBOutlet private var qrTopLeftLabel: UILabel!
     @IBOutlet private var qrTopRightLabel: UILabel!
 
+    @IBOutlet private var detectionAreaSlider: UISlider!
+    @IBOutlet private var detectionAreaLabel: UILabel!
+    @IBOutlet private var detectionScaleSlider: UISlider!
+    @IBOutlet private var detectionScaleLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         SimpleCamera.shared.add(videoOutputObserver: self)
@@ -80,6 +85,14 @@ final class ViewController: UIViewController {
         qrTopRightLabel.text = String(format: "x: %06.2f, y: %06.2f", topRight.x, topRight.y)
     }
 
+    @IBAction private func valueChangedDetectionAreaSlider(_ sender: UISlider) {
+        detectionAreaLabel.text = String(format: "%.2f", sender.value)
+    }
+
+    @IBAction private func valueChangedDetectionScaleSlider(_ sender: UISlider) {
+        detectionScaleLabel.text = String(format: "%.2f", sender.value)
+    }
+
     fileprivate var dropCount: UInt64 = 0
 
 }
@@ -123,7 +136,10 @@ extension ViewController: SimpleCameraVideoOutputObservable {
                 return
             }
 
-            let rect = image.extent.insetBy(dx: 400.0, dy: 100.0)
+            let insetFactor = max(0.0, min(1.0, 1.0 - CGFloat(self.detectionAreaSlider.value)))
+            let insetX = image.extent.width * 0.5 * insetFactor
+            let insetY = image.extent.height * 0.5 * insetFactor
+            let rect = image.extent.insetBy(dx: insetX, dy: insetY)
             let sourceOutMaskColor = CIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
             guard let sourceOutMaskImage = CIFilter(name: "CIConstantColorGenerator", parameters: ["inputColor": sourceOutMaskColor])?.outputImage?.cropped(to: rect) else {
                 return
@@ -151,7 +167,7 @@ extension ViewController: SimpleCameraVideoOutputObservable {
              }
              */
 
-            let detectorScale: CGFloat = 0.3
+            let detectorScale = CGFloat(self.detectionScaleSlider.value)
             let detectorImage = image.cropped(to: rect).transformed(by: CGAffineTransform(scaleX: detectorScale, y: detectorScale))
             let features = self.detector?.features(in: detectorImage) ?? []
             self.featuresCountLabel.text = "\(features.count)"
