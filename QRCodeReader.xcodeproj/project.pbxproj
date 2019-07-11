@@ -22,6 +22,7 @@
 		1911ED622268AA36003A0715 /* GPUCIImageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */; };
 		1911ED632268AA36003A0715 /* SimpleCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5C2268AA30003A0715 /* SimpleCamera.framework */; };
 		194321C122844D510052C257 /* LocusView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194321C022844D510052C257 /* LocusView.framework */; };
+		19F0E6BA22BBB35800F94E41 /* QRCodeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUCIImageView.framework; path = Carthage/Build/iOS/GPUCIImageView.framework; sourceTree = "<group>"; };
 		1911ED5C2268AA30003A0715 /* SimpleCamera.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleCamera.framework; path = Carthage/Build/iOS/SimpleCamera.framework; sourceTree = "<group>"; };
 		194321C022844D510052C257 /* LocusView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocusView.framework; path = Carthage/Build/iOS/LocusView.framework; sourceTree = "<group>"; };
+		19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				1911ED4B22689B3D003A0715 /* Information */,
+				19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */,
 			);
 			path = QRCodeReader;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 					};
 					1911ED3D22689AA8003A0715 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -370,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F0E6BA22BBB35800F94E41 /* QRCodeReaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +527,7 @@
 		1911ED3722689A21003A0715 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3XM25R8KKX;
@@ -544,6 +550,7 @@
 		1911ED3822689A21003A0715 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3XM25R8KKX;
@@ -566,6 +573,7 @@
 		1911ED4822689AA8003A0715 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -588,6 +596,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.dnpp.QRCodeReader;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -598,6 +607,7 @@
 		1911ED4922689AA8003A0715 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

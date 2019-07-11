@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="js2-pz-kcK" customClass="GLCIImageView" customModule="GPUCIImageView">
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="js2-pz-kcK" customClass="QRCodeReaderView" customModule="QRCodeReader">
                                 <rect key="frame" x="20" y="74" width="374" height="374"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -97,7 +97,7 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gdh-Vf-J7j">
                                                 <rect key="frame" x="101" y="0.0" width="238.5" height="31"/>
                                                 <connections>
-                                                    <action selector="valueChangedDetectionAreaSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="cko-pc-GQr"/>
+                                                    <action selector="valueChangedDetectionAreaSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="iQe-NP-mc1"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8R-Ay-7Xw">
@@ -120,7 +120,7 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="RXL-mZ-QPu">
                                                 <rect key="frame" x="107.5" y="0.0" width="232" height="31"/>
                                                 <connections>
-                                                    <action selector="valueChangedDetectionScaleSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="hH5-63-EsG"/>
+                                                    <action selector="valueChangedDetectionScaleSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="7B8-oM-yat"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtQ-uQ-joN">
@@ -258,7 +258,6 @@
                         <outlet property="detectionScaleLabel" destination="MtQ-uQ-joN" id="wvh-2f-gNN"/>
                         <outlet property="detectionScaleSlider" destination="RXL-mZ-QPu" id="Dzq-R7-bsA"/>
                         <outlet property="featuresCountLabel" destination="y6J-Bi-hUq" id="OCa-yM-XBn"/>
-                        <outlet property="imageView" destination="js2-pz-kcK" id="RIG-bN-Zef"/>
                         <outlet property="locusView" destination="Eb5-Oa-jKk" id="V85-Cb-kH7"/>
                         <outlet property="qrBottomLeftLabel" destination="euO-1M-amg" id="neQ-ID-SDB"/>
                         <outlet property="qrBottomRightLabel" destination="eZL-gg-Y5A" id="nAZ-4W-NRg"/>
@@ -266,6 +265,7 @@
                         <outlet property="qrMessageLabel" destination="gLO-Vg-bG4" id="Vjs-Xs-bwk"/>
                         <outlet property="qrTopLeftLabel" destination="hnR-SS-89M" id="kPr-JW-sM9"/>
                         <outlet property="qrTopRightLabel" destination="azu-3P-954" id="p6W-hP-Zll"/>
+                        <outlet property="readerView" destination="js2-pz-kcK" id="YGe-K8-jKw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
