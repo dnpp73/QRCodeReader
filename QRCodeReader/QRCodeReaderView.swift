@@ -13,21 +13,18 @@ public class QRCodeReaderView: UIView {
 
     public weak var delegate: QRCodeReaderViewDelegate?
 
+    // 負荷の調整をするためのパラメタ群
     public var detectionScale: CGFloat = 0.5
     public var detectionInsetX: CGFloat = 0.5
     public var detectionInsetY: CGFloat = 0.5
 
+    // 探索すべき画像はカメラから連続的に得られるので、多数決によって高周波成分を除去する。
+    // アルゴリズム的な英単語の語彙がないので不安だけど、とりあえず投票箱という名前にした。
+    private var featuresBallotBox: [CIQRCodeFeature] = []
+    public var voteLimit: Int = 20
+
+    // 単純に CIDetector が見付けた生の情報も取れるようにしておいた方が便利だと思われるのでリードオンリーで見られるようにしてあるだけ。
     public fileprivate(set) var features: [CIFeature] = [] {
-        didSet {
-            delegate?.qrCodeReaderViewDidUpdateRawInformation(self)
-        }
-    }
-    public fileprivate(set) var detectedRawMessage: String? {
-        didSet {
-            delegate?.qrCodeReaderViewDidUpdateRawInformation(self)
-        }
-    }
-    public fileprivate(set) var detectedRawPoint: CGPoint? {
         didSet {
             delegate?.qrCodeReaderViewDidUpdateRawInformation(self)
         }
@@ -98,6 +95,26 @@ public class QRCodeReaderView: UIView {
     public func stopReading() {
         SimpleCamera.shared.stopRunning()
         isReading = false
+    }
+
+    // MARK: - Vote
+
+    fileprivate func vote(qrcodeFeature: CIQRCodeFeature) {
+        featuresBallotBox.append(qrcodeFeature)
+        while featuresBallotBox.count >= voteLimit {
+            featuresBallotBox.removeFirst()
+        }
+
+        let detectionMessages: [String] = featuresBallotBox.compactMap { $0.messageString }
+        var count: [String: Int] = [:]
+        for message in detectionMessages {
+            if let c = count[message] {
+                count[message] = c + 1
+            } else {
+                count[message] = 0
+            }
+        }
+        print(count)
     }
 
 }
@@ -187,23 +204,14 @@ extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
             self.features = features
 
             if features.count != 1 {
-                self.detectedRawMessage = nil
-                self.detectedRawPoint = nil
                 return
             }
             guard let feature = features.last as? CIQRCodeFeature else {
-                self.detectedRawMessage = nil
-                self.detectedRawPoint = nil
                 return
             }
 
-            if let message = feature.messageString {
-                self.detectedRawMessage = message
-                self.detectedRawPoint = CGPoint(x: feature.bounds.midX / detectionImage.extent.width, y: 1.0 - feature.bounds.midY / detectionImage.extent.height)
-            } else {
-                self.detectedRawMessage = nil
-                self.detectedRawPoint = nil
-            }
+            // 多数決のための投票をする。
+            self.vote(qrcodeFeature: feature)
         }
     }
 
