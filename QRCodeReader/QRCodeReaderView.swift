@@ -6,6 +6,7 @@ import SimpleCamera
 import GPUCIImageView
 
 public protocol QRCodeReaderViewDelegate: class {
+    func qrCodeReaderViewDidUpdateMessageString(_ sender: QRCodeReaderView)
     func qrCodeReaderViewDidUpdateRawInformation(_ sender: QRCodeReaderView)
 }
 
@@ -18,10 +19,17 @@ public class QRCodeReaderView: UIView {
     public var detectionInsetX: CGFloat = 0.5
     public var detectionInsetY: CGFloat = 0.5
 
+    public var messageString: String? {
+        didSet {
+            if oldValue != messageString {
+                delegate?.qrCodeReaderViewDidUpdateMessageString(self)
+            }
+        }
+    }
+
     // 探索すべき画像はカメラから連続的に得られるので、多数決によって高周波成分を除去する。
     // アルゴリズム的な英単語の語彙がないので不安だけど、とりあえず投票箱という名前にした。
-    private var featuresBallotBox: [CIQRCodeFeature] = []
-    public var voteLimit: Int = 20
+    private var ballotBox = BallotBox<String>()
 
     // 単純に CIDetector が見付けた生の情報も取れるようにしておいた方が便利だと思われるのでリードオンリーで見られるようにしてあるだけ。
     public fileprivate(set) var features: [CIFeature] = [] {
@@ -97,26 +105,6 @@ public class QRCodeReaderView: UIView {
         isReading = false
     }
 
-    // MARK: - Vote
-
-    fileprivate func vote(qrcodeFeature: CIQRCodeFeature) {
-        featuresBallotBox.append(qrcodeFeature)
-        while featuresBallotBox.count >= voteLimit {
-            featuresBallotBox.removeFirst()
-        }
-
-        let detectionMessages: [String] = featuresBallotBox.compactMap { $0.messageString }
-        var count: [String: Int] = [:]
-        for message in detectionMessages {
-            if let c = count[message] {
-                count[message] = c + 1
-            } else {
-                count[message] = 0
-            }
-        }
-        print(count)
-    }
-
 }
 
 fileprivate extension CIImage {
@@ -178,14 +166,17 @@ extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
     }
 
     public func simpleCameraVideoOutputObserve(captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard CMSampleBufferIsValid(sampleBuffer) else {
-            return
-        }
-        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
         DispatchQueue.main.async {
+            guard CMSampleBufferIsValid(sampleBuffer) else {
+                self.vote(.blank)
+                return
+            }
+            guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+                self.vote(.blank)
+                return
+            }
             guard let imageView = self.imageView else {
+                self.vote(.blank)
                 return
             }
             let image = CIImage(cvImageBuffer: imageBuffer, options: nil).fill(to: self.limitSize)
@@ -204,20 +195,36 @@ extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
             self.features = features
 
             if features.count != 1 {
+                self.vote(.blank)
                 return
             }
             guard let feature = features.last as? CIQRCodeFeature else {
+                self.vote(.blank)
                 return
             }
 
             // 多数決のための投票をする。
-            self.vote(qrcodeFeature: feature)
+            guard let messageString = feature.messageString else {
+                self.vote(.blank)
+                return
+            }
+            self.vote(.valid(messageString))
         }
     }
 
     public func simpleCameraVideoOutputObserve(captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         dropCount += 1
         print(dropCount)
+    }
+
+    private func vote(_ vote: Vote<String>) {
+        ballotBox.vote(vote)
+        switch ballotBox.winner {
+        case .blank:
+            messageString = nil
+        case .valid(let value):
+            messageString = value
+        }
     }
 
 }

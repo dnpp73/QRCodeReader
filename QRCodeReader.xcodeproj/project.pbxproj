@@ -22,6 +22,7 @@
 		1911ED622268AA36003A0715 /* GPUCIImageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */; };
 		1911ED632268AA36003A0715 /* SimpleCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5C2268AA30003A0715 /* SimpleCamera.framework */; };
 		194321C122844D510052C257 /* LocusView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194321C022844D510052C257 /* LocusView.framework */; };
+		197431C622F30F5D009BB887 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197431C522F30F5D009BB887 /* Vote.swift */; };
 		19F0E6BA22BBB35800F94E41 /* QRCodeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUCIImageView.framework; path = Carthage/Build/iOS/GPUCIImageView.framework; sourceTree = "<group>"; };
 		1911ED5C2268AA30003A0715 /* SimpleCamera.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleCamera.framework; path = Carthage/Build/iOS/SimpleCamera.framework; sourceTree = "<group>"; };
 		194321C022844D510052C257 /* LocusView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocusView.framework; path = Carthage/Build/iOS/LocusView.framework; sourceTree = "<group>"; };
+		197431C522F30F5D009BB887 /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				1911ED4B22689B3D003A0715 /* Information */,
+				197431C422F30F4A009BB887 /* Internal */,
 				19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */,
 			);
 			path = QRCodeReader;
@@ -186,6 +189,14 @@
 				1911ED5C2268AA30003A0715 /* SimpleCamera.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		197431C422F30F4A009BB887 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				197431C522F30F5D009BB887 /* Vote.swift */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19F0E6BA22BBB35800F94E41 /* QRCodeReaderView.swift in Sources */,
+				197431C622F30F5D009BB887 /* Vote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

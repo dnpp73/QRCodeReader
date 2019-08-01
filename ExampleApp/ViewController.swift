@@ -9,8 +9,10 @@ final class ViewController: UIViewController {
 
     @IBOutlet fileprivate var locusView: LocusView!
 
-    @IBOutlet fileprivate var featuresCountLabel: UILabel!
     @IBOutlet fileprivate var qrMessageLabel: UILabel!
+
+    @IBOutlet fileprivate var featuresCountLabel: UILabel!
+    @IBOutlet fileprivate var qrRawMessageLabel: UILabel!
     @IBOutlet private var qrBoundsLabel: UILabel!
     @IBOutlet private var qrBottomLeftLabel: UILabel!
     @IBOutlet private var qrBottomRightLabel: UILabel!
@@ -80,18 +82,18 @@ final class ViewController: UIViewController {
 
         let feature: CIQRCodeFeature?
         if features.count != 1 {
-            qrMessageLabel.text = "-"
+            qrRawMessageLabel.text = "-"
             feature = nil
         } else {
             if let f = features.last as? CIQRCodeFeature {
                 if let message = f.messageString {
-                    self.qrMessageLabel.text = message
+                    self.qrRawMessageLabel.text = message
                 } else {
-                    self.qrMessageLabel.text = "-"
+                    self.qrRawMessageLabel.text = "-"
                 }
                 feature = f
             } else {
-                qrMessageLabel.text = "-"
+                qrRawMessageLabel.text = "-"
                 feature = nil
             }
         }
@@ -113,7 +115,7 @@ final class ViewController: UIViewController {
             bottomRight = .zero
             topLeft = .zero
             topRight = .zero
-            qrMessageLabel.text = "-"
+            qrRawMessageLabel.text = "-"
         }
 
         qrBoundsLabel.text = String(format: "x: %06.2f, y: %06.2f, w: %06.2f, h: %06.2f", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height)
@@ -126,6 +128,9 @@ final class ViewController: UIViewController {
 }
 
 extension ViewController: QRCodeReaderViewDelegate {
+    func qrCodeReaderViewDidUpdateMessageString(_ sender: QRCodeReaderView) {
+        qrMessageLabel.text = sender.messageString
+    }
     func qrCodeReaderViewDidUpdateRawInformation(_ sender: QRCodeReaderView) {
         updateQRBoundsLabels(features: sender.features)
     }
