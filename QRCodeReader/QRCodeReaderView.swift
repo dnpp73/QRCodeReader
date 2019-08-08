@@ -159,21 +159,27 @@ fileprivate extension CIImage {
     }
 
     func fit(to limitSize: CGSize) -> CIImage {
+        let canvasImage = CIImage(color: .clear).cropped(to: CGRect(origin: .zero, size: limitSize))
         let scaleWidth = limitSize.width / extent.width
         let scaleHeight = limitSize.height / extent.height
         let scale = min(scaleWidth, scaleHeight)
         let imageScale = min(1.0, scale)
-        return transformed(by: CGAffineTransform(scaleX: imageScale, y: imageScale))
+        let scaledImage = transformed(by: CGAffineTransform(scaleX: imageScale, y: imageScale))
+        let dx = (canvasImage.extent.width - scaledImage.extent.width) / 2.0
+        let dy = (canvasImage.extent.height - scaledImage.extent.height) / 2.0
+        return scaledImage.transformed(by: CGAffineTransform(translationX: dx, y: dy)).composited(over: canvasImage)
     }
 
     func fill(to limitSize: CGSize) -> CIImage {
+        let canvasImage = CIImage(color: .clear).cropped(to: CGRect(origin: .zero, size: limitSize))
         let scaleWidth = limitSize.width / extent.width
         let scaleHeight = limitSize.height / extent.height
         let scale = max(scaleWidth, scaleHeight)
         let imageScale = min(1.0, scale)
         let scaledImage = transformed(by: CGAffineTransform(scaleX: imageScale, y: imageScale))
-        #warning("センタリングする")
-        return scaledImage.cropped(to: CGRect(origin: .zero, size: limitSize))
+        let dx = (canvasImage.extent.width - scaledImage.extent.width) / 2.0
+        let dy = (canvasImage.extent.height - scaledImage.extent.height) / 2.0
+        return scaledImage.transformed(by: CGAffineTransform(translationX: dx, y: dy)).cropped(to: CGRect(origin: .zero, size: limitSize))
     }
 }
 
