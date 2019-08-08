@@ -16,8 +16,10 @@ final class ViewController: UIViewController {
     @IBOutlet private var qrTopLeftLabel: UILabel!
     @IBOutlet private var qrTopRightLabel: UILabel!
 
-    @IBOutlet private var detectionAreaSlider: UISlider!
-    @IBOutlet private var detectionAreaLabel: UILabel!
+    @IBOutlet private var detectionAreaXSlider: UISlider!
+    @IBOutlet private var detectionAreaXLabel: UILabel!
+    @IBOutlet private var detectionAreaYSlider: UISlider!
+    @IBOutlet private var detectionAreaYLabel: UILabel!
     @IBOutlet private var detectionScaleSlider: UISlider!
     @IBOutlet private var detectionScaleLabel: UILabel!
 
@@ -26,9 +28,13 @@ final class ViewController: UIViewController {
         readerView?.delegate = self
         readerView?.detectionAreaMaskColor = .grayTransparent
 
-        let area = Float(readerView?.detectionInsetX ?? 0.0)
-        detectionAreaLabel.text = String(format: "%.2f", area)
-        detectionAreaSlider.value = area
+        let areaX = Float(readerView?.detectionInsetX ?? 0.0)
+        detectionAreaXLabel.text = String(format: "%.2f", areaX)
+        detectionAreaXSlider.value = areaX
+
+        let areaY = Float(readerView?.detectionInsetY ?? 0.0)
+        detectionAreaYLabel.text = String(format: "%.2f", areaY)
+        detectionAreaYSlider.value = areaY
 
         let scale = Float(readerView?.detectionScale ?? 0.0)
         detectionScaleLabel.text = String(format: "%.2f", scale)
@@ -45,10 +51,15 @@ final class ViewController: UIViewController {
         readerView?.stopReading()
     }
 
-    @IBAction private func valueChangedDetectionAreaSlider(_ sender: UISlider) {
-        detectionAreaLabel.text = String(format: "%.2f", sender.value)
+    @IBAction private func valueChangedDetectionAreaXSlider(_ sender: UISlider) {
+        detectionAreaXLabel.text = String(format: "%.2f", sender.value)
         let inset = CGFloat(sender.value)
         readerView?.detectionInsetX = inset
+    }
+
+    @IBAction private func valueChangedDetectionAreaYSlider(_ sender: UISlider) {
+        detectionAreaYLabel.text = String(format: "%.2f", sender.value)
+        let inset = CGFloat(sender.value)
         readerView?.detectionInsetY = inset
     }
 
