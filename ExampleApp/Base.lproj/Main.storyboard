@@ -25,10 +25,6 @@
                                     <constraint firstAttribute="width" secondItem="js2-pz-kcK" secondAttribute="height" multiplier="1:1" id="e6Y-NG-U3v"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eb5-Oa-jKk" customClass="LocusView" customModule="LocusView">
-                                <rect key="frame" x="20" y="74" width="374" height="374"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DdC-2H-Q8P">
                                 <rect key="frame" x="20" y="478" width="374" height="394"/>
                                 <subviews>
@@ -171,7 +167,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bottomLeft" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R83-yO-zqT">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="13"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="90" id="G3c-Db-pw7"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="G3c-Db-pw7"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="11"/>
                                                 <nil key="textColor"/>
@@ -191,7 +187,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bottomRight" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKF-a0-eRM">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="13"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="90" id="7l7-uE-c7L"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="7l7-uE-c7L"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="11"/>
                                                 <nil key="textColor"/>
@@ -211,7 +207,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="topLeft" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEP-T0-dlk">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="13"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="90" id="LbT-zx-qUx"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="LbT-zx-qUx"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="11"/>
                                                 <nil key="textColor"/>
@@ -231,7 +227,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="topRight" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQh-Br-sHX">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="13"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="90" id="0cR-uk-n8J"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="0cR-uk-n8J"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="11"/>
                                                 <nil key="textColor"/>
@@ -258,14 +254,10 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="js2-pz-kcK" secondAttribute="trailing" constant="20" id="03B-Y3-NjC"/>
                             <constraint firstItem="js2-pz-kcK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="F6s-aD-7Uf"/>
-                            <constraint firstItem="Eb5-Oa-jKk" firstAttribute="bottom" secondItem="js2-pz-kcK" secondAttribute="bottom" id="HXP-3f-rSZ"/>
                             <constraint firstItem="DdC-2H-Q8P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="TV8-fY-Lp6"/>
                             <constraint firstItem="js2-pz-kcK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ehv-Iu-OqU"/>
                             <constraint firstItem="DdC-2H-Q8P" firstAttribute="top" secondItem="js2-pz-kcK" secondAttribute="bottom" constant="30" id="nwd-zU-iCh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DdC-2H-Q8P" secondAttribute="trailing" constant="20" id="o1H-Kf-S4H"/>
-                            <constraint firstItem="Eb5-Oa-jKk" firstAttribute="top" secondItem="js2-pz-kcK" secondAttribute="top" id="s1A-yF-TIz"/>
-                            <constraint firstItem="Eb5-Oa-jKk" firstAttribute="trailing" secondItem="js2-pz-kcK" secondAttribute="trailing" id="uFl-nO-Pmr"/>
-                            <constraint firstItem="Eb5-Oa-jKk" firstAttribute="leading" secondItem="js2-pz-kcK" secondAttribute="leading" id="w9v-oK-Xae"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -275,7 +267,6 @@
                         <outlet property="detectionScaleLabel" destination="MtQ-uQ-joN" id="wvh-2f-gNN"/>
                         <outlet property="detectionScaleSlider" destination="RXL-mZ-QPu" id="Dzq-R7-bsA"/>
                         <outlet property="featuresCountLabel" destination="y6J-Bi-hUq" id="OCa-yM-XBn"/>
-                        <outlet property="locusView" destination="Eb5-Oa-jKk" id="V85-Cb-kH7"/>
                         <outlet property="qrBottomLeftLabel" destination="euO-1M-amg" id="neQ-ID-SDB"/>
                         <outlet property="qrBottomRightLabel" destination="eZL-gg-Y5A" id="nAZ-4W-NRg"/>
                         <outlet property="qrBoundsLabel" destination="0C4-yb-8Cv" id="9V8-Zr-eX4"/>

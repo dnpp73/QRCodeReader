@@ -1,13 +1,10 @@
 import UIKit
 import QRCodeReader
 import CoreImage
-import LocusView
 
 final class ViewController: UIViewController {
 
     @IBOutlet fileprivate var readerView: QRCodeReaderView!
-
-    @IBOutlet fileprivate var locusView: LocusView!
 
     @IBOutlet fileprivate var qrMessageLabel: UILabel!
 
@@ -28,7 +25,6 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         readerView?.delegate = self
         updateQRBoundsLabels()
-        resetLocusView()
     }
 
     @IBAction private func touchUpInsideStartButton(_ sender: UIButton) {
@@ -50,31 +46,6 @@ final class ViewController: UIViewController {
         detectionScaleLabel.text = String(format: "%.2f", sender.value)
         let scale = CGFloat(sender.value)
         readerView?.detectionScale = scale
-    }
-
-    fileprivate func resetLocusView() {
-        let diameter = LocusView.defaultCircleDiameter
-        // diameterSlider.value     = Float(diameter)
-        // diameterLabel.text       = String(format: "%.2f", arguments: [diameter])
-        locusView.circleDiameter = CGFloat(diameter)
-
-        // let animationDuration = LocusView.defaultAnimationDuration
-        let animationDuration = 0.2
-        // animationDurationSlider.value = Float(animationDuration)
-        // animationDurationLabel.text   = String(format: "%.2f", arguments: [animationDuration])
-        locusView.animationDuration = TimeInterval(animationDuration)
-
-        // let tailHistorySeconds = LocusView.defaultTailHistorySeconds
-        let tailHistorySeconds = 0.0
-        // tailHistorySecondsSlider.value = Float(tailHistorySeconds)
-        // tailHistorySecondsLabel.text   = String(format: "%.2f", arguments: [tailHistorySeconds])
-        locusView.tailHistorySeconds = TimeInterval(tailHistorySeconds)
-
-        // locusView.circleColor = LocusView.defaultCircleColor
-        locusView.circleColor = UIColor(white: 1.0, alpha: 0.4)
-        // locusView.tailColor = LocusView.defaultTailColor
-        locusView.tailColor = UIColor(white: 1.0, alpha: 0.2)
-
     }
 
     fileprivate func updateQRBoundsLabels(features: [CIFeature] = []) {

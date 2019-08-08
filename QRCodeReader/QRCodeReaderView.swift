@@ -19,7 +19,7 @@ public class QRCodeReaderView: UIView {
     public var detectionInsetX: CGFloat = 0.5
     public var detectionInsetY: CGFloat = 0.5
 
-    public var messageString: String? {
+    public fileprivate(set) var messageString: String? {
         didSet {
             if oldValue != messageString {
                 delegate?.qrCodeReaderViewDidUpdateMessageString(self)
