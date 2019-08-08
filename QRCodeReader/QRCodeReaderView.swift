@@ -14,10 +14,12 @@ public class QRCodeReaderView: UIView {
 
     public weak var delegate: QRCodeReaderViewDelegate?
 
+    public var detectionAreaMaskColor: UIColor = .clear { didSet { updateImageView() } }
+
     // 負荷の調整をするためのパラメタ群
     public var detectionScale: CGFloat = 0.5
-    public var detectionInsetX: CGFloat = 0.5
-    public var detectionInsetY: CGFloat = 0.5
+    public var detectionInsetX: CGFloat = 0.5 { didSet { updateImageView() } }
+    public var detectionInsetY: CGFloat = 0.5 { didSet { updateImageView() } }
 
     public fileprivate(set) var messageString: String? {
         didSet {
@@ -27,16 +29,18 @@ public class QRCodeReaderView: UIView {
         }
     }
 
-    // 探索すべき画像はカメラから連続的に得られるので、多数決によって高周波成分を除去する。
-    // アルゴリズム的な英単語の語彙がないので不安だけど、とりあえず投票箱という名前にした。
-    private var ballotBox = BallotBox<String>()
-
     // 単純に CIDetector が見付けた生の情報も取れるようにしておいた方が便利だと思われるのでリードオンリーで見られるようにしてあるだけ。
     public fileprivate(set) var features: [CIFeature] = [] {
         didSet {
             delegate?.qrCodeReaderViewDidUpdateRawInformation(self)
         }
     }
+
+    fileprivate var displayImage: CIImage? { didSet { updateImageView() } }
+
+    // 探索すべき画像はカメラから連続的に得られるので、多数決によって高周波成分を除去する。
+    // アルゴリズム的な英単語の語彙がないので不安だけど、とりあえず投票箱という名前にした。
+    private var ballotBox = BallotBox<String>()
 
     fileprivate var imageView: GLCIImageView?
     fileprivate var detector: CIDetector?
@@ -88,7 +92,7 @@ public class QRCodeReaderView: UIView {
         }
     }
 
-    // MARK: - Custom Methods
+    // MARK: - Camera Control
 
     public private(set) var isReading: Bool = false
 
@@ -103,6 +107,28 @@ public class QRCodeReaderView: UIView {
     public func stopReading() {
         SimpleCamera.shared.stopRunning()
         isReading = false
+    }
+
+    // MARK: for display CIImage
+
+    fileprivate var detectionAreaRect: CGRect {
+        guard let image = displayImage else {
+            return .zero
+        }
+        let realInsetX = image.extent.width * 0.5 * detectionInsetX
+        let realInsetY = image.extent.height * 0.5 * detectionInsetY
+        return image.extent.insetBy(dx: realInsetX, dy: realInsetY)
+    }
+
+    fileprivate func updateImageView() {
+        guard let _ = window else {
+            return
+        }
+        guard let image = displayImage else {
+            imageView?.image = nil
+            return
+        }
+        imageView?.image = image.masked(color: CIColor(color: detectionAreaMaskColor), rect: detectionAreaRect)
     }
 
 }
@@ -175,21 +201,18 @@ extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
                 self.vote(.blank)
                 return
             }
-            guard let imageView = self.imageView else {
+            guard let _ = self.imageView else {
                 self.vote(.blank)
                 return
             }
-            let image = CIImage(cvImageBuffer: imageBuffer, options: nil).fill(to: self.limitSize)
+            let rawImage = CIImage(cvImageBuffer: imageBuffer, options: nil)
+            let image = rawImage.fill(to: self.limitSize)
 
-            let realInsetX = image.extent.width * 0.5 * self.detectionInsetX
-            let realInsetY = image.extent.height * 0.5 * self.detectionInsetY
-            let rect = image.extent.insetBy(dx: realInsetX, dy: realInsetY)
-
-            // 表示用のイメージはこれで良い
-            imageView.image = image.masked(color: CIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.8), rect: rect)
+            // 表示用のイメージをここで投げる。カメラからは基本 30 fps なので、愚直に nil を放り込んだりなどしてしまってタイミングを間違えるとフリッカーが発生するので注意をすること。
+            self.displayImage = image
 
             // 全体の画像を渡すと重いので実際に QRCode があるか判定する画像はクロップ済のものにする。
-            let detectionImage = image.cropped(to: rect).transformed(by: CGAffineTransform(scaleX: self.detectionScale, y: self.detectionScale))
+            let detectionImage = image.cropped(to: self.detectionAreaRect).transformed(by: CGAffineTransform(scaleX: self.detectionScale, y: self.detectionScale))
 
             let features = self.detector?.features(in: detectionImage) ?? []
             self.features = features
@@ -214,7 +237,7 @@ extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
 
     public func simpleCameraVideoOutputObserve(captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         dropCount += 1
-        print(dropCount)
+        // print(dropCount)
     }
 
     private func vote(_ vote: Vote<String>) {
