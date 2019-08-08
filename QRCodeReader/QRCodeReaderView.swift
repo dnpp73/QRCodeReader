@@ -16,8 +16,8 @@ public class QRCodeReaderView: UIView {
 
     public var detectionAreaMaskColor: UIColor = .clear { didSet { updateImageView() } }
 
-    // 負荷の調整をするためのパラメタ群
-    public var detectionScale: CGFloat = 0.5
+    // 負荷の調整をするためのパラメタ群。 0.0 <-> 1.0 です。
+    public var detectionScale: CGFloat = 0.75
     public var detectionInsetX: CGFloat = 0.5 { didSet { updateImageView() } }
     public var detectionInsetY: CGFloat = 0.5 { didSet { updateImageView() } }
 

@@ -7,6 +7,11 @@ enum Vote<E: Equatable & Hashable> {
 
 struct BallotBox<E: Equatable & Hashable> {
 
+    // 最低限、白票よりも三分の一以上であれば勝利とする。何も検出されてない状況からの立ち上がりが若干早くなり 0.33 秒程度にするという気持ち。
+    var winRate: Double = 0.333
+
+    // カメラからの入力が 30 fps 想定なので、これで多数決による勝者の入れ替わりは概ね 0.5 秒の想定となる。
+    // 60 にして試してみたけど、 1 秒かかるとなると少しもっさり感があった。
     var limit: Int = 30 {
         didSet {
             pruneBox()
@@ -27,12 +32,10 @@ struct BallotBox<E: Equatable & Hashable> {
     mutating func vote(_ vote: Vote<E>) {
         box.append(vote)
         pruneBox()
-
-        print(winner)
     }
 
     var winner: Vote<E> {
-        var blankCount = 0
+        let threshold = Int(ceil(Double(limit) * winRate))
         var count: [E: Int] = [:]
         for vote in box {
             switch vote {
@@ -43,18 +46,18 @@ struct BallotBox<E: Equatable & Hashable> {
                     count[value] = 0
                 }
             case .blank:
-                blankCount += 1
+                break
             }
         }
         let array: [(count: Int, value: E)] = count.map { ($0.value, $0.key) }
         let sorted = array.sorted { $0.count > $1.count }
-        guard let many = sorted.first else {
+        guard let winner = sorted.first else {
             return .blank
         }
-        if many.count < blankCount {
+        if winner.count <= threshold {
             return .blank
         } else {
-            return .valid(many.value)
+            return .valid(winner.value)
         }
     }
 
