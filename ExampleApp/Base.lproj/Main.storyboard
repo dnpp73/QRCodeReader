@@ -37,6 +37,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Av0-CU-sTT" kind="show" id="jeD-Pm-wX1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -92,10 +95,90 @@
             </objects>
             <point key="canvasLocation" x="-1683" y="139"/>
         </scene>
-        <!--Detail Debug View Controller-->
+        <!--Sample-->
+        <scene sceneID="1fJ-TU-gNX">
+            <objects>
+                <viewController title="Sample" id="Av0-CU-sTT" customClass="SampleViewController" customModule="QRCodeExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sjg-GY-T4t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="kPG-HT-gpN" customClass="QRCodeReaderView" customModule="QRCodeReader">
+                                <rect key="frame" x="20" y="128" width="374" height="187"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kPG-HT-gpN" secondAttribute="height" multiplier="2:1" id="RcA-fn-Xp4"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oT7-IF-r8P">
+                                <rect key="frame" x="20" y="345" width="374" height="63"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FFf-8t-m7k">
+                                        <rect key="frame" x="144" y="0.0" width="86" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="501-Vl-CGc">
+                                                <rect key="frame" x="0.0" y="0.0" width="34" height="30"/>
+                                                <state key="normal" title="Start"/>
+                                                <connections>
+                                                    <action selector="touchUpInsideStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7h8-mC-dQg"/>
+                                                    <action selector="touchUpInsideStartButton:" destination="Av0-CU-sTT" eventType="touchUpInside" id="x0G-i6-EBA"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9M-Fe-v2D">
+                                                <rect key="frame" x="54" y="0.0" width="32" height="30"/>
+                                                <state key="normal" title="Stop"/>
+                                                <connections>
+                                                    <action selector="touchUpInsideStopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="246-TP-UDT"/>
+                                                    <action selector="touchUpInsideStopButton:" destination="Av0-CU-sTT" eventType="touchUpInside" id="Fws-tA-0jC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Yd1-Sb-B9A">
+                                        <rect key="frame" x="155.5" y="50" width="63.5" height="13"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9D-je-Kcp">
+                                                <rect key="frame" x="0.0" y="0.0" width="46.5" height="13"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeX-n5-IfT">
+                                                <rect key="frame" x="56.5" y="0.0" width="7" height="13"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oT7-IF-r8P" firstAttribute="leading" secondItem="KV0-3N-ksw" secondAttribute="leading" constant="20" id="G2I-gN-a6J"/>
+                            <constraint firstItem="kPG-HT-gpN" firstAttribute="top" secondItem="KV0-3N-ksw" secondAttribute="top" constant="40" id="M9Y-Ag-eWq"/>
+                            <constraint firstItem="kPG-HT-gpN" firstAttribute="width" secondItem="kPG-HT-gpN" secondAttribute="height" multiplier="2:1" id="PzG-Eg-yda"/>
+                            <constraint firstItem="oT7-IF-r8P" firstAttribute="top" secondItem="kPG-HT-gpN" secondAttribute="bottom" constant="30" id="eYs-r4-MVX"/>
+                            <constraint firstItem="kPG-HT-gpN" firstAttribute="leading" secondItem="KV0-3N-ksw" secondAttribute="leading" constant="20" id="gOV-ci-S2i"/>
+                            <constraint firstItem="KV0-3N-ksw" firstAttribute="trailing" secondItem="oT7-IF-r8P" secondAttribute="trailing" constant="20" id="loM-D8-Xqx"/>
+                            <constraint firstItem="KV0-3N-ksw" firstAttribute="trailing" secondItem="kPG-HT-gpN" secondAttribute="trailing" constant="20" id="nCb-rF-xuk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KV0-3N-ksw"/>
+                    </view>
+                    <connections>
+                        <outlet property="qrMessageLabel" destination="aeX-n5-IfT" id="qvH-1W-Dp8"/>
+                        <outlet property="readerView" destination="kPG-HT-gpN" id="HYd-Xd-gYS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CgK-xU-E9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="-627"/>
+        </scene>
+        <!--Debug-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="DetailDebugViewController" customModule="QRCodeExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Debug" id="BYZ-38-t0r" customClass="DetailDebugViewController" customModule="QRCodeExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -21,6 +21,8 @@
 		1911ED602268AA30003A0715 /* SimpleCamera.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5C2268AA30003A0715 /* SimpleCamera.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1911ED622268AA36003A0715 /* GPUCIImageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */; };
 		1911ED632268AA36003A0715 /* SimpleCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5C2268AA30003A0715 /* SimpleCamera.framework */; };
+		19156C0A2317F1FC001E26DC /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19156C092317F1FC001E26DC /* SampleViewController.swift */; };
+		19156C0C2318086E001E26DC /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19156C0B2318086E001E26DC /* UIColor+Random.swift */; };
 		197431C622F30F5D009BB887 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197431C522F30F5D009BB887 /* Vote.swift */; };
 		19F0E6BA22BBB35800F94E41 /* QRCodeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +72,8 @@
 		1911ED5A2268A885003A0715 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUCIImageView.framework; path = Carthage/Build/iOS/GPUCIImageView.framework; sourceTree = "<group>"; };
 		1911ED5C2268AA30003A0715 /* SimpleCamera.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleCamera.framework; path = Carthage/Build/iOS/SimpleCamera.framework; sourceTree = "<group>"; };
+		19156C092317F1FC001E26DC /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
+		19156C0B2318086E001E26DC /* UIColor+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
 		197431C522F30F5D009BB887 /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,7 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				1911ED2922689A1F003A0715 /* AppDelegate.swift */,
+				19156C092317F1FC001E26DC /* SampleViewController.swift */,
 				1911ED2B22689A1F003A0715 /* DetailDebugViewController.swift */,
+				19156C0B2318086E001E26DC /* UIColor+Random.swift */,
 				1911ED2D22689A1F003A0715 /* Main.storyboard */,
 				1911ED3022689A21003A0715 /* Assets.xcassets */,
 				1911ED3222689A21003A0715 /* LaunchScreen.storyboard */,
@@ -371,8 +377,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19156C0C2318086E001E26DC /* UIColor+Random.swift in Sources */,
 				1911ED2C22689A1F003A0715 /* DetailDebugViewController.swift in Sources */,
 				1911ED2A22689A1F003A0715 /* AppDelegate.swift in Sources */,
+				19156C0A2317F1FC001E26DC /* SampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
