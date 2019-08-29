@@ -6,7 +6,7 @@ QRCodeReader
 
 ## How to use
 
-see [`ExampleApp/ViewController.swift`](/ExampleApp/ViewController.swift)
+see [`ExampleApp/SampleViewController.swift`](/ExampleApp/SampleViewController.swift)
 
 
 ## Carthage
