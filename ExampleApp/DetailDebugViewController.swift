@@ -2,7 +2,7 @@ import UIKit
 import QRCodeReader
 import CoreImage
 
-final class ViewController: UIViewController {
+final class DetailDebugViewController: UIViewController {
 
     @IBOutlet fileprivate var readerView: QRCodeReaderView!
 
@@ -40,6 +40,7 @@ final class ViewController: UIViewController {
         detectionScaleLabel.text = String(format: "%.2f", scale)
         detectionScaleSlider.value = scale
 
+        readerView?.rawInfomationDelegate = self
         updateQRBoundsLabels() // Optional
     }
 
@@ -120,8 +121,7 @@ final class ViewController: UIViewController {
 
 }
 
-extension ViewController: QRCodeReaderViewDelegate {
-
+extension DetailDebugViewController: QRCodeReaderViewDelegate {
     func qrCodeReaderViewDidUpdateMessageString(_ sender: QRCodeReaderView) {
         qrMessageLabel.text = sender.messageString
         if let _ = sender.messageString {
@@ -130,12 +130,13 @@ extension ViewController: QRCodeReaderViewDelegate {
             sender.detectionAreaMaskColor = .grayTransparent
         }
     }
+}
 
-    // Optional
+// Optional
+extension DetailDebugViewController: QRCodeReaderViewRawInformationDelegate {
     func qrCodeReaderViewDidUpdateRawInformation(_ sender: QRCodeReaderView) {
         updateQRBoundsLabels(features: sender.features)
     }
-
 }
 
 fileprivate extension UIColor {

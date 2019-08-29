@@ -7,12 +7,16 @@ import GPUCIImageView
 
 public protocol QRCodeReaderViewDelegate: class {
     func qrCodeReaderViewDidUpdateMessageString(_ sender: QRCodeReaderView)
+}
+
+public protocol QRCodeReaderViewRawInformationDelegate: class {
     func qrCodeReaderViewDidUpdateRawInformation(_ sender: QRCodeReaderView)
 }
 
 public class QRCodeReaderView: UIView {
 
     public weak var delegate: QRCodeReaderViewDelegate?
+    public weak var rawInfomationDelegate: QRCodeReaderViewRawInformationDelegate?
 
     public var detectionAreaMaskColor: UIColor = .clear { didSet { updateImageView() } }
 
@@ -32,7 +36,7 @@ public class QRCodeReaderView: UIView {
     // 単純に CIDetector が見付けた生の情報も取れるようにしておいた方が便利だと思われるのでリードオンリーで見られるようにしてあるだけ。
     public fileprivate(set) var features: [CIFeature] = [] {
         didSet {
-            delegate?.qrCodeReaderViewDidUpdateRawInformation(self)
+            rawInfomationDelegate?.qrCodeReaderViewDidUpdateRawInformation(self)
         }
     }
 
