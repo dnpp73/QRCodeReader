@@ -43,6 +43,7 @@ extension SampleViewController: QRCodeReaderViewDelegate {
             sender.detectionAreaMaskColor = .random
         } else {
             sender.detectionAreaMaskColor = .grayTransparent
+            UIPasteboard.general.setValue(sender.messageString, forPasteboardType: "public.text")
         }
     }
 }
