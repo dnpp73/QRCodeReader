@@ -75,6 +75,7 @@
 		19156C092317F1FC001E26DC /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
 		19156C0B2318086E001E26DC /* UIColor+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
 		197431C522F30F5D009BB887 /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
+		19E52AD42554756200290ADF /* carthage.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = carthage.sh; sourceTree = "<group>"; };
 		19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				1911ED4E22689D8A003A0715 /* dotfiles */,
+				19E52AD32554756200290ADF /* bin */,
 				1911ED572268A374003A0715 /* Documantation */,
 				1911ED582268A397003A0715 /* Dependency */,
 				19E52A542554695700290ADF /* Sources */,
@@ -207,6 +209,14 @@
 				19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		19E52AD32554756200290ADF /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				19E52AD42554756200290ADF /* carthage.sh */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
