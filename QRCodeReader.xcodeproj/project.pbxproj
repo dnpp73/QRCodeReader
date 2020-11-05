@@ -107,6 +107,7 @@
 				1911ED4E22689D8A003A0715 /* dotfiles */,
 				1911ED572268A374003A0715 /* Documantation */,
 				1911ED582268A397003A0715 /* Dependency */,
+				19E52A542554695700290ADF /* Sources */,
 				1911ED3F22689AA8003A0715 /* QRCodeReader */,
 				1911ED2822689A1F003A0715 /* ExampleApp */,
 				1911ED0F22689960003A0715 /* Products */,
@@ -142,8 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				1911ED4B22689B3D003A0715 /* Information */,
-				197431C422F30F4A009BB887 /* Internal */,
-				19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */,
 			);
 			path = QRCodeReader;
 			sourceTree = "<group>";
@@ -199,6 +198,15 @@
 				197431C522F30F5D009BB887 /* Vote.swift */,
 			);
 			path = Internal;
+			sourceTree = "<group>";
+		};
+		19E52A542554695700290ADF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				197431C422F30F4A009BB887 /* Internal */,
+				19F0E6B922BBB35800F94E41 /* QRCodeReaderView.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
