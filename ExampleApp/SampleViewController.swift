@@ -39,11 +39,11 @@ final class SampleViewController: UIViewController {
 extension SampleViewController: QRCodeReaderViewDelegate {
     func qrCodeReaderViewDidUpdateMessageString(_ sender: QRCodeReaderView) {
         qrMessageLabel.text = sender.messageString
-        if let _ = sender.messageString {
+        if let messageString = sender.messageString {
             sender.detectionAreaMaskColor = .random
+            UIPasteboard.general.setValue(messageString, forPasteboardType: "public.text")
         } else {
             sender.detectionAreaMaskColor = .grayTransparent
-            UIPasteboard.general.setValue(sender.messageString, forPasteboardType: "public.text")
         }
     }
 }
