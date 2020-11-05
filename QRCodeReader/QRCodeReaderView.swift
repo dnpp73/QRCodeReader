@@ -190,7 +190,7 @@ fileprivate extension CIImage {
 extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
 
     private var screenScale: CGFloat {
-        return imageView?.window?.screen.scale ?? 1.0
+        imageView?.window?.screen.scale ?? 1.0
     }
 
     private var limitSize: CGSize {
