@@ -17,7 +17,7 @@ let package = Package(
     targets: [
         .target(
             name: "QRCodeReader",
-            dependencies: [],
+            dependencies: ["GPUCIImageView", "SimpleCamera"],
             path: "Sources"
         ),
     ]
