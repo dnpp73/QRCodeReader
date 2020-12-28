@@ -17,9 +17,16 @@ You can see flicker reduction on the `Detail` screenshot.
 Flicker reduction is implemented by a simple majority vote algorithm. see [Vote.swift](/Sources/Internal/Vote.swift)
 
 
+## Technical Detail
+
+Please see my [blog post](https://blog.dnpp.org/ios_qrcode_reader) (written in Japanese).
+
+
 ## How to use
 
 see [`ExampleApp/MinimumSampleViewController.swift`](/ExampleApp/MinimumSampleViewController.swift) and [`ExampleApp/DetailSampleViewController.swift`](/ExampleApp/DetailSampleViewController.swift)
+
+(I'm sorry for the comments in the source code in Japanese.)
 
 
 ## Build Example App
