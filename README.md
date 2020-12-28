@@ -5,6 +5,18 @@ QRCodeReader
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-4BC51D.svg?style=flat-square)](https://github.com/apple/swift-package-manager)
 
 
+## Demo
+
+<img src="/screenshot/minimum.gif" alt="minimum" width="200"> <img src="/screenshot/noise.gif" alt="noise" width="200">
+
+You can see flicker reduction on the `Detail` screenshot.
+
+- `Message`: stable
+- `Raw Message`: flickered
+
+Flicker reduction is implemented by a simple majority vote algorithm. see [Vote.swift](/Sources/Internal/Vote.swift)
+
+
 ## How to use
 
 see [`ExampleApp/SampleViewController.swift`](/ExampleApp/SampleViewController.swift)
