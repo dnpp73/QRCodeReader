@@ -15,10 +15,6 @@
 		1911ED4222689AA8003A0715 /* QRCodeReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1911ED4022689AA8003A0715 /* QRCodeReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1911ED4522689AA8003A0715 /* QRCodeReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED3E22689AA8003A0715 /* QRCodeReader.framework */; };
 		1911ED4622689AA8003A0715 /* QRCodeReader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED3E22689AA8003A0715 /* QRCodeReader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1911ED5D2268AA30003A0715 /* GPUCIImageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */; };
-		1911ED5E2268AA30003A0715 /* GPUCIImageView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1911ED5F2268AA30003A0715 /* SimpleCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5C2268AA30003A0715 /* SimpleCamera.framework */; };
-		1911ED602268AA30003A0715 /* SimpleCamera.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5C2268AA30003A0715 /* SimpleCamera.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1911ED622268AA36003A0715 /* GPUCIImageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5B2268AA30003A0715 /* GPUCIImageView.framework */; };
 		1911ED632268AA36003A0715 /* SimpleCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911ED5C2268AA30003A0715 /* SimpleCamera.framework */; };
 		19156C0A2317F1FC001E26DC /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19156C092317F1FC001E26DC /* SampleViewController.swift */; };
@@ -44,9 +40,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1911ED5E2268AA30003A0715 /* GPUCIImageView.framework in Embed Frameworks */,
 				1911ED4622689AA8003A0715 /* QRCodeReader.framework in Embed Frameworks */,
-				1911ED602268AA30003A0715 /* SimpleCamera.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,9 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1911ED5D2268AA30003A0715 /* GPUCIImageView.framework in Frameworks */,
 				1911ED4522689AA8003A0715 /* QRCodeReader.framework in Frameworks */,
-				1911ED5F2268AA30003A0715 /* SimpleCamera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +274,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = dnpp.org;
 				TargetAttributes = {
 					1911ED2622689A1F003A0715 = {
