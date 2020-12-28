@@ -19,7 +19,7 @@ Flicker reduction is implemented by a simple majority vote algorithm. see [Vote.
 
 ## How to use
 
-see [`ExampleApp/SampleViewController.swift`](/ExampleApp/SampleViewController.swift)
+see [`ExampleApp/MinimumSampleViewController.swift`](/ExampleApp/MinimumSampleViewController.swift) and [`ExampleApp/DetailSampleViewController.swift`](/ExampleApp/DetailSampleViewController.swift)
 
 
 ## Build Example App
