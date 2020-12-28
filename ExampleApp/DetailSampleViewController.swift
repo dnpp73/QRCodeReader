@@ -2,7 +2,7 @@ import UIKit
 import QRCodeReader
 import CoreImage
 
-final class DetailDebugViewController: UIViewController {
+final class DetailSampleViewController: UIViewController {
 
     @IBOutlet fileprivate var readerView: QRCodeReaderView!
 
@@ -44,27 +44,27 @@ final class DetailDebugViewController: UIViewController {
         updateQRBoundsLabels() // Optional
     }
 
-    @IBAction private func touchUpInsideStartButton(_ sender: UIButton) {
+    @IBAction private func handleTouchUpInsideStartButton(_ sender: UIButton) {
         readerView?.startReading()
     }
 
-    @IBAction private func touchUpInsideStopButton(_ sender: UIButton) {
+    @IBAction private func handleTouchUpInsideStopButton(_ sender: UIButton) {
         readerView?.stopReading()
     }
 
-    @IBAction private func valueChangedDetectionAreaXSlider(_ sender: UISlider) {
+    @IBAction private func handleValueChangedDetectionAreaXSlider(_ sender: UISlider) {
         detectionAreaXLabel.text = String(format: "%.2f", sender.value)
         let inset = CGFloat(sender.value)
         readerView?.detectionInsetX = inset
     }
 
-    @IBAction private func valueChangedDetectionAreaYSlider(_ sender: UISlider) {
+    @IBAction private func handleValueChangedDetectionAreaYSlider(_ sender: UISlider) {
         detectionAreaYLabel.text = String(format: "%.2f", sender.value)
         let inset = CGFloat(sender.value)
         readerView?.detectionInsetY = inset
     }
 
-    @IBAction private func valueChangedDetectionScaleSlider(_ sender: UISlider) {
+    @IBAction private func handleValueChangedDetectionScaleSlider(_ sender: UISlider) {
         detectionScaleLabel.text = String(format: "%.2f", sender.value)
         let scale = CGFloat(sender.value)
         readerView?.detectionScale = scale
@@ -121,7 +121,7 @@ final class DetailDebugViewController: UIViewController {
 
 }
 
-extension DetailDebugViewController: QRCodeReaderViewDelegate {
+extension DetailSampleViewController: QRCodeReaderViewDelegate {
     func qrCodeReaderViewDidUpdateMessageString(_ sender: QRCodeReaderView) {
         qrMessageLabel.text = sender.messageString
         if let _ = sender.messageString {
@@ -133,7 +133,7 @@ extension DetailDebugViewController: QRCodeReaderViewDelegate {
 }
 
 // Optional
-extension DetailDebugViewController: QRCodeReaderViewRawInformationDelegate {
+extension DetailSampleViewController: QRCodeReaderViewRawInformationDelegate {
     func qrCodeReaderViewDidUpdateRawInformation(_ sender: QRCodeReaderView) {
         updateQRBoundsLabels(features: sender.features)
     }

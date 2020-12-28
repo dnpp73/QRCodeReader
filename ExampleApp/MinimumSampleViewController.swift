@@ -1,7 +1,7 @@
 import UIKit
 import QRCodeReader
 
-final class SampleViewController: UIViewController {
+final class MinimumSampleViewController: UIViewController {
 
     @IBOutlet fileprivate var readerView: QRCodeReaderView!
     @IBOutlet fileprivate var qrMessageLabel: UILabel!
@@ -26,17 +26,17 @@ final class SampleViewController: UIViewController {
         readerView?.detectionAreaMaskColor = .grayTransparent
     }
 
-    @IBAction private func touchUpInsideStartButton(_ sender: UIButton) {
+    @IBAction private func handleTouchUpInsideStartButton(_ sender: UIButton) {
         readerView?.startReading()
     }
 
-    @IBAction private func touchUpInsideStopButton(_ sender: UIButton) {
+    @IBAction private func handleTouchUpInsideStopButton(_ sender: UIButton) {
         readerView?.stopReading()
     }
 
 }
 
-extension SampleViewController: QRCodeReaderViewDelegate {
+extension MinimumSampleViewController: QRCodeReaderViewDelegate {
     func qrCodeReaderViewDidUpdateMessageString(_ sender: QRCodeReaderView) {
         qrMessageLabel.text = sender.messageString
         if let messageString = sender.messageString {
