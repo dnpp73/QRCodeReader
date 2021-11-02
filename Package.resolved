@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/dnpp73/GPUCIImageView",
         "state": {
           "branch": null,
-          "revision": "6d1aaa1ad5c36a85fc1cb98924f589eeab21ac42",
-          "version": "0.1.0"
+          "revision": "2d8a482f4fac1c1a7159d41feb708806f5fb1e2d",
+          "version": "0.1.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/dnpp73/SimpleCamera",
         "state": {
           "branch": null,
-          "revision": "74d994a7f28ba5c51c0f19b39866d89a6ae9e4cc",
-          "version": "0.1.1"
+          "revision": "555927d1547920f18cfcce9e1aff0f3989138d61",
+          "version": "0.2.1"
         }
       }
     ]

@@ -5,14 +5,15 @@ import PackageDescription
 let package = Package(
     name: "QRCodeReader",
     platforms: [
-        .iOS(.v10),
+        .iOS(.v12),
+        .macOS(.v10_11),
     ],
     products: [
         .library(name: "QRCodeReader", targets: ["QRCodeReader"]),
     ],
     dependencies: [
         .package(url: "https://github.com/dnpp73/GPUCIImageView", .upToNextMinor(from: "0.1.1")),
-        .package(url: "https://github.com/dnpp73/SimpleCamera", .upToNextMinor(from: "0.1.1")),
+        .package(url: "https://github.com/dnpp73/SimpleCamera", .upToNextMinor(from: "0.2.0")),
     ],
     targets: [
         .target(

@@ -1,3 +1,5 @@
+#if canImport(UIKit)
+
 import Foundation
 import UIKit
 import AVFoundation
@@ -89,10 +91,10 @@ public class QRCodeReaderView: UIView {
     override public func didMoveToWindow() {
         super.didMoveToWindow()
         if let _ = window {
-            SimpleCamera.shared.add(videoOutputObserver: self)
+            SimpleCamera.shared.add(videoDataOutputObserver: self)
         } else {
             stopReading()
-            SimpleCamera.shared.remove(videoOutputObserver: self)
+            SimpleCamera.shared.remove(videoDataOutputObserver: self)
         }
     }
 
@@ -187,7 +189,7 @@ fileprivate extension CIImage {
     }
 }
 
-extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
+extension QRCodeReaderView: SimpleCameraVideoDataOutputObservable {
 
     private var screenScale: CGFloat {
         imageView?.window?.screen.scale ?? 1.0
@@ -201,7 +203,7 @@ extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
         return imageView.bounds.size.applying(t)
     }
 
-    public func simpleCameraVideoOutputObserve(captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    public func simpleCameraVideoDataOutputObserve(captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         DispatchQueue.main.async {
             guard CMSampleBufferIsValid(sampleBuffer) else {
                 self.vote(.blank)
@@ -245,7 +247,7 @@ extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
         }
     }
 
-    public func simpleCameraVideoOutputObserve(captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    public func simpleCameraVideoDataOutputObserve(captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         dropCount += 1
         // print(dropCount)
     }
@@ -261,3 +263,5 @@ extension QRCodeReaderView: SimpleCameraVideoOutputObservable {
     }
 
 }
+
+#endif
