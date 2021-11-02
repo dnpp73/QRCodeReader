@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "QRCodeReader", targets: ["QRCodeReader"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/dnpp73/GPUCIImageView", .upToNextMinor(from: "0.1.0")),
+        .package(url: "https://github.com/dnpp73/GPUCIImageView", .upToNextMinor(from: "0.1.1")),
         .package(url: "https://github.com/dnpp73/SimpleCamera", .upToNextMinor(from: "0.1.1")),
     ],
     targets: [

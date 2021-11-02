@@ -643,16 +643,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dnpp73/GPUCIImageView";
 			requirement = {
-				kind = exactVersion;
-				version = 0.1.1;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.1.1;
 			};
 		};
 		1912B6E02731513800D8C374 /* XCRemoteSwiftPackageReference "SimpleCamera" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dnpp73/SimpleCamera";
 			requirement = {
-				kind = exactVersion;
-				version = 0.1.1;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
