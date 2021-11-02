@@ -5,11 +5,11 @@ import CoreImage
 import SimpleCamera
 import GPUCIImageView
 
-public protocol QRCodeReaderViewDelegate: class {
+public protocol QRCodeReaderViewDelegate: AnyObject {
     func qrCodeReaderViewDidUpdateMessageString(_ sender: QRCodeReaderView)
 }
 
-public protocol QRCodeReaderViewRawInformationDelegate: class {
+public protocol QRCodeReaderViewRawInformationDelegate: AnyObject {
     func qrCodeReaderViewDidUpdateRawInformation(_ sender: QRCodeReaderView)
 }
 
@@ -46,7 +46,7 @@ public class QRCodeReaderView: UIView {
     // アルゴリズム的な英単語の語彙がないので不安だけど、とりあえず投票箱という名前にした。
     private var ballotBox = BallotBox<String>()
 
-    fileprivate var imageView: GLCIImageView?
+    fileprivate var imageView: MTCIImageView?
     fileprivate var detector: CIDetector?
     fileprivate var dropCount: UInt64 = 0
 
@@ -63,7 +63,7 @@ public class QRCodeReaderView: UIView {
     }
 
     private func commonInit() {
-        let imageView = GLCIImageView()
+        let imageView = MTCIImageView()
 
         // AutoLayout を弄るのは addSubview 以降
         addSubview(imageView)
