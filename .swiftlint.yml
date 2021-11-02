@@ -1,4 +1,4 @@
-whitelist_rules:
+only_rules:
   - todo
   - trailing_newline
   - leading_whitespace

@@ -205,7 +205,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1911ED3622689A21003A0715 /* Build configuration list for PBXNativeTarget "ExampleApp" */;
 			buildPhases = (
-				1911ED5122689EC4003A0715 /* Run SwiftLint AutoCorrect */,
 				1911ED5222689EE1003A0715 /* Run SwiftLint */,
 				1911ED2322689A1F003A0715 /* Sources */,
 				1911ED2422689A1F003A0715 /* Frameworks */,
@@ -311,24 +310,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1911ED5122689EC4003A0715 /* Run SwiftLint AutoCorrect */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftLint AutoCorrect";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect\nelse\n    : echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
 		1911ED5222689EE1003A0715 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    : echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint --fix\n    swiftlint\nelif [ -x /opt/homebrew/bin/swiftlint ]; then\n    /opt/homebrew/bin/swiftlint --fix\n    /opt/homebrew/bin/swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
